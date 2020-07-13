@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.njk" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/styles/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-    <title>Foodfy</title>
-</head>
+{% block head %}
+    <title>{{info.title}}</title>
+{% endblock %}
 
-<body>
-    <header class="header">
-        <a href="index.html"><img src="../../public/assets/logo.png" alt="logo"></a>
-        <div class="menu">
-            <a href="about.html">Sobre</a>
-            <a href="recipes.html">Receitas</a>
-        </div>
-    </header>
+{% block header %}
+    <a href="/about"><strong>Sobre</strong></a>
+    <a href="/recipes">Receitas</a>
+{% endblock %}
 
+{% block content %}
     <div class="about">
-        <h2>Sobre o Foodfy</h2>
+        <h2>{{info.about}}</h2>
 
         <p>Suspendisse placerat neque neque. Morbi dictum nulla non sapien rhoncus, et mattis erat commodo.
             Aliquam vel lacus a justo mollis luctus. Proin vel auctor eros, sed eleifend nunc. Curabitur eget tincidunt
@@ -41,7 +32,7 @@
             semper orci et, malesuada sodales eros. Nunc ut nulla faucibus enim ultricies euismod.</p>
 
 
-        <h2>Como tudo começou…</h2>
+        <h2>{{info.start}}</h2>
 
         <p>Suspendisse placerat neque neque. Morbi dictum nulla non sapien rhoncus, et mattis erat commodo.
             Aliquam vel lacus a justo mollis luctus. Proin vel auctor eros, sed eleifend nunc. Curabitur eget tincidunt
@@ -61,7 +52,7 @@
             neque, vulputate
             semper orci et, malesuada sodales eros. Nunc ut nulla faucibus enim ultricies euismod.</p>
 
-        <h2>Nossas Receitas</h2>
+        <h2>{{info.recipes}}</h2>
 
         <p>Fusce nec pulvinar nunc. Duis porttitor tincidunt accumsan. Quisque pulvinar mollis ipsum ut accumsan. 
             Proin ligula lectus, rutrum vel nisl quis, eﬃcitur porttitor nisl. Morbi ut accumsan felis, eu ultrices lacus. 
@@ -69,10 +60,7 @@
             Donec libero neque, vulputate semper orci et, malesuada sodales eros. Nunc ut nulla faucibus enim ultricies euismod.</p>
 
     </div>
+{% endblock %}
+    
 
-    <footer>
-        <p>Todos direitos reservados, receitas Foodfy.</p>
-    </footer>
-</body>
-
-</html>
+  
