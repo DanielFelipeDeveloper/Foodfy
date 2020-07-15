@@ -6,6 +6,8 @@
   <img alt="Foodfy" src="https://github.com/DanielFelipeDeveloper/Foodfy/blob/master/public/assets/logo.png"/>
 </h3>
 
+<h1 align="center"> <img src="https://github.com/DanielFelipeDeveloper/Foodfy/blob/master/public/assets/Foodfy-Google-Chrome-14_07_2020-21_36_37.gif" width="1000px"> </h1>
+
 # :rocket: Sobre o que criamos
 
 <p> 
@@ -30,6 +32,7 @@ Um site de receitas, feito com HTML, CSS, JavaScript, Node.js e Nunjucks.
 $ npm install
 #Inicie o Servidor
 $ npm start
+#Acesse o Servidor no Seu Navegador
+$ localhost:3000
 ```
 
-<h2><img src="https://static.thenounproject.com/png/25759-200.png"width="50px" height="50px" align="center"/> Resultados </h2>
