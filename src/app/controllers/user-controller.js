@@ -2,13 +2,13 @@ const recipes = require('../../data');
 
 module.exports = {
   index(req, res) {
-    res.render('index', { recipes })
+    res.render('user/index', { recipes })
   },
   about(req, res) {
-    res.render('about')
+    res.render('user/about')
   },
   showAllRecipes(req, res) {
-    res.render('recipes', { recipes })
+    res.render('user/recipes', { recipes })
   },
   showTheRecipe(req, res) {
     const recipeIndex = req.params.index
@@ -23,6 +23,6 @@ module.exports = {
         return res.send('recept not found')
     }
     
-    return res.render('recipe', { item: recipes[recipeIndex] } )
+    return res.render('user/recipe', { item: recipes[recipeIndex] } )
   }
 }

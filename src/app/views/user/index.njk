@@ -1,4 +1,4 @@
-{% extends "layout.njk" %}
+{% extends "user/layout.njk" %}
 
 {% block head %}
     <title>Foodfy</title>
@@ -22,7 +22,7 @@
         <div class="cards-recipes">
             {% for recipe in recipes %}
                 <div class="card-recipe" id="{{ recipes.indexOf(recipe) }}">
-                    <img src={{ recipe.image }} alt="Imagem de {{recipe.title}}">
+                    <img src={{recipe.image}} alt="Imagem de {{recipe.title}}">
                     <h3>{{recipe.title}}</h3>
                     <p>{{recipe.author}}</p>
                 </div>

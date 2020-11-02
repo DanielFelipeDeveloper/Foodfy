@@ -1,8 +1,7 @@
-const recipes = require('../../data');
-
+const recipes = require('../../data.json');
 module.exports = {
   index(req, res) {
-
+    return res.render('admin/index', { recipes: recipes.recipes })
   },
   create(req, res) {
     

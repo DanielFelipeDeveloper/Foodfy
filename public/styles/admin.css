@@ -1,0 +1,76 @@
+/*== HEADER ==*/
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background: black;
+}
+
+.header .logo {
+    max-width: 940px;
+    width: 100%;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin: 0 auto;
+}
+
+/*== PAGE-CONTENT ==*/
+
+.page-content {
+    max-width: 940px;
+    width: 100%;
+    margin: 50px auto 0 auto;
+}
+
+.page-content h2 {
+    font-weight: 800;
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 470px 470px;
+    row-gap: 20px;
+    column-gap: 39px;
+}
+
+.card{
+    display: flex;
+}
+
+.card .card-img {
+    width: 172px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.card .card-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 8.57px;
+}
+
+.card .card-description h3{
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #111111;
+}
+
+.card .card-description p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #777777;
+}
+
+.card .card-description a {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 800;
+    color: #6558C3;
+}
