@@ -10,7 +10,7 @@ module.exports = {
     
   },
   edit(req, res) {
-    
+    return res.render('admin/edit')
   },
   // HTTP METHODS //
   post(req, res) {
