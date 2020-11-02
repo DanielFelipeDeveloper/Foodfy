@@ -4,7 +4,7 @@ module.exports = {
     return res.render('admin/index', { recipes: recipes.recipes })
   },
   create(req, res) {
-    
+    return res.render('admin/create')
   },
   show(req, res) {
     
@@ -12,6 +12,7 @@ module.exports = {
   edit(req, res) {
     
   },
+  // HTTP METHODS //
   post(req, res) {
     
   },

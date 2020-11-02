@@ -1,4 +1,5 @@
-const recipes = require('../../data');
+const data = require('../../data.json');
+const recipes = data.recipes;
 
 module.exports = {
   index(req, res) {
@@ -13,16 +14,16 @@ module.exports = {
   showTheRecipe(req, res) {
     const recipeIndex = req.params.index
 
-    const recipe = recipes.indexOf( (recipe) => {
-        if (recipe == recipeIndex) {
+    const recipe = recipes.find((recipe) => {
+        if (recipe.id == recipeIndex) {
             return true
         }
     })
 
     if(!recipe) {
-        return res.send('recept not found')
+        return res.send('recipe not found')
     }
     
-    return res.render('user/recipe', { item: recipes[recipeIndex] } )
+    return res.render('user/recipe', { item: recipes[recipeIndex - 1] })
   }
 }
