@@ -17,6 +17,7 @@
             type="url"
             name="image"
             placeholder="https://..."
+            value={{recipe.image}}
           >
         </div>
       </div>
@@ -24,12 +25,13 @@
       <div class="form" id="ingredients">
         <div>Ingredientes</div>
         <div class="ingredient">
-          <input 
-            type="text" 
-            name="ingredients[]" 
-            value="" 
-            placeholder="Ingredientes" 
-          />
+          {% for ingredient in recipe.ingredients %}
+            <input 
+              type="text" 
+              name="ingredients[]" 
+              value="{{ingredient}}"
+            >
+          {% endfor %}
         </div>
         <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
       </div>
@@ -37,12 +39,13 @@
       <div class="form" id="preparation">
         <div>Modo de preparo</div>
         <div class="preparation">
-          <input 
-            type="text" 
-            name="preparation[]" 
-            value="" 
-            placeholder="Modo de Preparo / Passo a passo" 
-          />
+          {% for preparation in recipe.preparation %}
+            <input 
+              type="text" 
+              name="ingredients[]" 
+              value="{{preparation}}" 
+            />
+          {% endfor %}
         </div>
         <button type="button" class="add-ingredient">Adicionar novo passo</button>
       </div>
@@ -50,10 +53,12 @@
       <div class="form">
         <div>Informações adicionais</div>
         <div>
-          <input 
+          <textarea 
             name="information" 
-            class="information" 
+            class="information"
           >
+          {{recipe.information}}
+          </textarea>
         </div>
       </div>
     </form>
