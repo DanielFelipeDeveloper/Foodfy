@@ -2,12 +2,6 @@
     <img alt="Launchbase" src="https://storage.googleapis.com/golden-wind/bootcamp-launchbase/logo.png" width="300px" />
 </h1>
 
-<h3 align="center">
-  <img alt="Foodfy" src="https://github.com/DanielFelipeDeveloper/Foodfy/blob/master/public/assets/logo.png"/>
-</h3>
-
-<h1 align="center"> <img src="https://github.com/DanielFelipeDeveloper/Foodfy/blob/master/public/assets/Foodfy-Google-Chrome-14_07_2020-21_36_37.gif" width="1000px"> </h1>
-
 # :rocket: Sobre o que criamos
 
 <p> 
