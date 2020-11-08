@@ -117,6 +117,11 @@
     margin-bottom: 30px;
 }
 
+.form-content .form#ingredients,
+.form-content .form#preparations {
+    margin-bottom: 0;
+}
+
 .form-content .form div:first-of-type {
     font-size: 16px;
     font-weight: bold;
@@ -132,8 +137,9 @@
     font-size: 16px;
 }
 
-.form-content .form button {
+.form-content button {
     margin-top: 15px;
+    margin-bottom: 30px;
     cursor: pointer;
     border: none;
     background: none;
