@@ -1,12 +1,37 @@
 {% extends 'admin/layout.njk' %}
 
 {% block content %}
-  <div class="form-content">
+  <form class="form-content" method="POST" action="/admin/recipes"  >
     <div class="form-header">
       <h2>Criando receita</h2>
-      <button type="submit">Salvar receita</button>
+      <button 
+        type="submit" 
+        method="POST" 
+        action="/admin/recipes"
+      >
+      Salvar receita
+      </button>
     </div>
-    <form method="POST" action="/admin/recipes/create">
+      <div class="form">
+        <div>Titulo da Receita</div>
+        <div>
+          <input 
+            type="text"
+            name="title"
+          >
+        </div>
+      </div>
+
+      <div class="form">
+        <div>Autor da Receita</div>
+        <div>
+          <input 
+            type="text"
+            name="author"
+          >
+        </div>
+      </div>
+
       <div class="form">
         <div>Imagem da receita</div>
         <div>
@@ -53,7 +78,6 @@
           >
         </div>
       </div>
-    </form>
-  </div>
+  </form>
   <script src="/scripts/dynamicField.js"></script>
 {% endblock content %}

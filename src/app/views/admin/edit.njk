@@ -1,7 +1,7 @@
 {% extends 'admin/layout.njk' %}
 
 {% block content %}
-  <div class="form-content">
+  <form class="form-content">
     <div class="form-header">
       <h2>Editando receita</h2>
       <div class="form-btn">
@@ -9,58 +9,8 @@
         <button type="submit">Salvar receita</button>
       </div>
     </div>
-    <form method="POST" action="/admin/recipes/create">
-      <div class="form">
-        <div>Imagem da receita</div>
-        <div>
-          <input 
-            type="url"
-            name="image"
-            placeholder="https://..."
-            value={{recipe.image}}
-          >
-        </div>
-      </div>
-
-      <div class="form" id="ingredients">
-        <div>Ingredientes</div>
-        <div class="ingredient">
-          {% for ingredient in recipe.ingredients %}
-            <input 
-              type="text" 
-              name="ingredients[]" 
-              value="{{ingredient}}"
-            >
-          {% endfor %}
-        </div>
-        <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
-      </div>
-
-      <div class="form" id="preparation">
-        <div>Modo de preparo</div>
-        <div class="preparation">
-          {% for preparation in recipe.preparation %}
-            <input 
-              type="text" 
-              name="ingredients[]" 
-              value="{{preparation}}" 
-            />
-          {% endfor %}
-        </div>
-        <button type="button" class="add-ingredient">Adicionar novo passo</button>
-      </div>
-
-      <div class="form">
-        <div>Informações adicionais</div>
-        <div>
-          <textarea 
-            name="information" 
-            class="information"
-          >
-          {{recipe.information}}
-          </textarea>
-        </div>
-      </div>
-    </form>
-  </div>
+      
+      {% include 'admin/fields.njk' %}
+  </form>
+  
 {% endblock content %}

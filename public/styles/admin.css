@@ -89,6 +89,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    position: relative;
 }
 
 .form-content .form-header h2 {
@@ -96,7 +97,8 @@
     font-weight: bold;
 }
 
-.form-content .form-header button {
+.form-content .form-header button,
+button#delete {
     background: #6558C3;
     color: #FFF;
     font-size: 16px;
@@ -107,10 +109,10 @@
     cursor: pointer;
 }
 
-.form-content .form-header button#delete {
+button#delete {
     background-color: #DC4747;
-    margin-right: 10px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .form-content .form {
