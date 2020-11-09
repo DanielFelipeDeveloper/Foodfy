@@ -1,17 +1,24 @@
 {% extends 'admin/layout.njk' %}
 
 {% block content %}
-  <form class="form-content">
+  <div class="form-content">
     <div class="form-header">
       <h2>Editando receita</h2>
       <div class="form-btn">
-        <button type="submit" id="delete">Deletar</button>
-        <button type="submit">Salvar receita</button>
+        <button type="submit" form="form-delete" id="delete">Deletar</button>
+        <button type="submit" form="form-edit">Salvar receita</button>
       </div>
     </div>
       
-      {% include 'admin/fields.njk' %}
-  </form>
+      <form id="form-edit" method='POST' action='/admin/recipes/?_method=PUT'>
+        {% include 'admin/fields.njk' %}
+        <input type="hidden" name='id' value={{recipe.id}}>
+      </form>
+
+      <form id="form-delete" method='POST' action="/admin/recipes/?_method=DELETE">
+        <input type="hidden" name='id' value={{recipe.id}}>
+      </form>
+  </div>
   
   <script src="/scripts/dynamicFieldEdit.js"></script>
 {% endblock content %}
