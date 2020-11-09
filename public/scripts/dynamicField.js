@@ -1,17 +1,17 @@
 function addIngredient() {
-  const ingredients = document.querySelector('#ingredients');
-  const fieldContainer = document.querySelectorAll(".ingredient");
+  const ingredient = document.querySelector('.ingredient')
+  const ingredients = document.querySelectorAll('.ingredient')
 
-  const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
+  const newField = ingredients[ingredients.length - 1].cloneNode(true);
 
   if (newField.children[0].value == "") return false;
 
   newField.children[0].value = "";
-  ingredients.appendChild(newField)
+  ingredient.appendChild(newField)
 }
 
 function addPreparation() {
-  const preparations = document.querySelector('#preparations');
+  const preparations = document.querySelector('.preparation');
   const fieldContainer = document.querySelectorAll('.preparation');
 
   const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);

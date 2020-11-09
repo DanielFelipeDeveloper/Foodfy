@@ -42,11 +42,7 @@
         value="{{ingredient}}"
       >  
     {% endfor %}
-      <input 
-        type="text" 
-        name="ingredients[]" 
-        value="{{ingredient}}"
-      >  
+
   </div>
   <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
 </div>
@@ -57,9 +53,8 @@
     {% for preparation in recipe.preparation %}
       <input type="text" name="preparation[]" value="{{preparation}}"/>
     {% endfor %}
-      <input type="text" name="preparation[]" value="{{preparation}}"/>
   </div>
-  <button type="button" class="add-ingredient">Adicionar novo passo</button>
+  <button type="button" class="add-preparation">Adicionar novo passo</button>
 </div>
 
 <div class="form">
