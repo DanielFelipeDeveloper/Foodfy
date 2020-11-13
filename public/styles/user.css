@@ -229,7 +229,7 @@ footer p {
 
 .about {
     max-width: 940px;
-    margin: auto;
+    margin: auto auto 100px auto;
 }
 
 .about h2 {
