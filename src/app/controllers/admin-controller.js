@@ -1,6 +1,3 @@
-const data = require('../../data.json');
-const fs = require('fs');
-const { date } = require('../../lib/utils');
 const Recipes = require('../models/Recipes');
 
 module.exports = {
@@ -22,13 +19,11 @@ module.exports = {
   edit(req, res) {
     const recipeId = req.params.id
 
-    const foundRecipe = recipes.find((recipe) => {
-      return recipe.id == recipeId
+    Recipes.find(recipeId, (recipe) => {
+      if (!recipe) return res.send('Recipe not found!')
+      return res.render('admin/edit', { recipe })
     })
 
-    if (!foundRecipe) return 'Recipe not found!'
-
-    return res.render('admin/edit', { recipe: recipes[foundRecipe.id - 1] })
   },
   // HTTP METHODS //
   post(req, res) {
@@ -41,49 +36,23 @@ module.exports = {
     Recipes.create(req.body, (recipes) => {
       return res.redirect(`/admin/recipes/${recipes.id}`)
     })
-
-    
   },
   put(req, res) {
-    const { id } = req.body
-    let index = 0
+    const keys = Object.keys(req.body)
 
-    const foundRecipe = data.recipes.find(function (recipe, foundIndex) {
-      if (id == recipe.id) {
-        index = foundIndex
-        return true
-      }
-    })
-
-    if (!foundRecipe) return res.send('Recipe not found!')
-
-    
-    const recipe = {
-      id: Number(id),
-      ...foundRecipe,
-      ...req.body
+    for (key of keys) {
+      if (req.body[key] == "")
+        return res.send("Please Fill All Fields")
     }
 
-    data.recipes[index] = recipe
-
-    fs.writeFile("src/data.json", JSON.stringify(data, null, 2), (err) => {
-      if (err) return res.send(`Write File Error! ${err}`)
-
-      return res.redirect(`/admin/recipes/${id}`)
+    Recipes.update(req.body, () => {
+      return res.redirect(`/admin/recipes/${req.body.id}`)
     })
   },
   delete(req, res) {
     const { id } = req.body
     
-    const foundRecipes = data.recipes.filter((recipe) => {
-      return recipe.id != id
-    })
-
-    data.recipes = foundRecipes
-
-    fs.writeFile('src/data.json', JSON.stringify(data, null, 2), (err) => {
-      if (err) return res.send(`Write File Error! ${err}`)
-
+    Recipes.delete(id, () => {
       return res.redirect('/admin/recipes')
     })
   }

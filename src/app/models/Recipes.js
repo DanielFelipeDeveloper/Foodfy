@@ -39,10 +39,45 @@ module.exports = {
   find(id, callback) {
     db.query(`
       SELECT *
-      FROM RECIPES
-      WHERE ID = $1`, [id], (err, results) => {
+      from recipes
+      WHERE id = $1`, [id], (err, results) => {
         if (err) throw `Database Error! ${err}`
         callback(results.rows[0])
       })
+  },
+  update(data, callback) {
+    const query = `
+      UPDATE recipes SET 
+        image=($1),
+        title=($2),
+        ingredients=($3),
+        preparation=($4),
+        information=($5),
+        updated_at=($6)
+      WHERE id = ($7)
+    `
+
+    const values = [
+      data.image,
+      data.title,
+      data.ingredients,
+      data.preparation,
+      data.information,
+      date(Date.now()).iso,
+      data.id
+    ]
+
+    db.query(query, values, (err, results) => {
+      if (err) throw `Database Error! ${err}`
+
+      return callback()
+    })
+  },
+  delete(id, callback) {
+    db.query(`DELETE from recipes WHERE id = $1`, [id], (err, results) => {
+      if (err) throw `Database Error! ${err}`
+
+      return callback()
+    })
   }
 }
