@@ -2,19 +2,35 @@
 .header {
     display: flex;
     align-items: center;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     min-height: 80px;
     background: black;
 }
 
-.header .logo {
-    max-width: 940px;
-    min-width: 940px;
-    width: 100%;
+.header .links {
     display: flex;
-    align-items: left;
-    justify-content: left;
+    align-items: center;
+    max-width: 940px;
+    width: 100%;
     margin: 0 auto;
+}
+
+.header .links .item {
+    margin-left: 50.4px;;
+}
+
+.item a {
+    color: #999999;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-right: 30px;
+}
+
+.item a.active {
+    color: #fff;
 }
 
 /*== PAGE-CONTENT ==*/

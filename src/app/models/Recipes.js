@@ -31,7 +31,7 @@ module.exports = {
     ]
 
     db.query(query, values, (err, results) => {
-      if (err) return res.send(`Database Error! ${err}`)
+      if (err) return console.log(`Database Error! ${err}`)
 
       callback(results.rows[0])
     })

@@ -15,13 +15,20 @@
 </head>
 <body>
     <header class="header">
-        <div class="logo">
-            <a href="/admin/recipes"><img src="/assets/logo-white.png" alt="logo"></a>
+        <div class="links">
+            <div class="logo">
+                <a href="/admin/recipes"><img src="/assets/logo-white.png" alt="logo"></a>
+            </div>
+            <div class="item">
+                <a href="/admin/recipes">receitas</a>
+                <a href="/admin/chefs">chefs</a>
+            </div>
         </div>
     </header>
 
    {% block content %}
    {% endblock %}
 
+<script src="/scripts/admin.js"></script>
 </body>
 </html>
