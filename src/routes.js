@@ -12,11 +12,15 @@ routes.get('/recipes', userController.showAllRecipes)
 routes.get('/recipes/:index', userController.showTheRecipe)
 
 /* ADMIN ROUTES */
+
+/* RECIPES */
 routes.get('/admin/recipes', recipeController.index)
 routes.get('/admin/recipes/create', recipeController.create)
 routes.get('/admin/recipes/:id', recipeController.show)
 routes.get('/admin/recipes/:id/edit', recipeController.edit)
+/* CHEFS */
 routes.get('/admin/chefs', chefController.index)
+routes.get('/admin/chefs/create', chefController.create)
 
 
 routes.post('/admin/recipes', recipeController.post)

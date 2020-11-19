@@ -101,7 +101,8 @@
     margin: 55px auto 0 auto;
 }
 
-.form-content .form-header {
+.form-content .form-header,
+.chef-content .form-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -109,12 +110,14 @@
     position: relative;
 }
 
-.form-content .form-header h2 {
+.form-content .form-header h2,
+.chef-content .form-header h2 {
     font-size: 24px;
     font-weight: bold;
 }
 
 .form-content .form-header button,
+.chef-content .form-header button, 
 button#delete {
     background: #6558C3;
     color: #FFF;
@@ -132,7 +135,7 @@ button#delete {
     margin-right: 10px;
 }
 
-.form-content .form {
+.form {
     margin-bottom: 30px;
 }
 
@@ -141,13 +144,13 @@ button#delete {
     margin-bottom: 0;
 }
 
-.form-content .form div:first-of-type {
+.form div:first-of-type {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.form-content .form input {
+.form input {
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     width: 100%;
