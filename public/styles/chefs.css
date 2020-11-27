@@ -36,3 +36,43 @@
   color:#6558C3;
 }
 
+.chef-img-container {
+  margin-top: 51px;
+  text-align: center;
+}
+
+.chef-img-container img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.chef-img-container h2 {
+  margin-top: 30px;
+  font-size: 36px;
+}
+
+.chef-img-container p {
+  margin-top: 4px;
+  font-weight: 300;
+  font-size: 20px;
+  color: #777777;
+}
+
+.chef-recipes {
+  max-width: 940px;
+  margin-top: 50px;
+}
+
+.chef-recipes h2 {
+  margin-bottom: 30px;
+}
+
+.chef-recipes .recipes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+

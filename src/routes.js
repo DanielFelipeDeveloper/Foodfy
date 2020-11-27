@@ -21,7 +21,8 @@ routes.get('/admin/recipes/:id/edit', recipeController.edit)
 /* CHEFS */
 routes.get('/admin/chefs', chefController.index)
 routes.get('/admin/chefs/create', chefController.create)
-
+routes.get('/admin/chefs/:id', chefController.show)
+routes.get('/admin/chefs/:id/edit', chefController.edit)
 
 routes.post('/admin/recipes', recipeController.post)
 routes.put('/admin/recipes', recipeController.put)
