@@ -1,10 +1,14 @@
 {% extends 'admin/layout.njk' %}
 
 {% block content %}
-  <form class="chef-content">
+  <form class="chef-content" method="POST" action="/admin/chefs">
     <div class="form-header">
       <h2>Criando chef</h2>
-      <button>
+      <button
+        type="submit"
+        method="POST"
+        action="/admin/chefs"
+      >
         Salvar chef
       </button>
     </div>
@@ -19,7 +23,7 @@
     <div class="form">
       <div>Avatar</div>
       <div>
-        <input type="url" name="avatar">
+        <input type="url" name="avatar_url">
       </div>
     </div>
   </form>
