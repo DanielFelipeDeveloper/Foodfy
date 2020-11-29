@@ -4,78 +4,17 @@
   <div class="chef-content">
     <h2>Gerenciar chefs</h2>
     <div class="chef-cards">
-      <div class="chef-card">
+      {% for chef in chefs %}
+        <div class="chef-card">
         <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
+          <img src="{{ chef.avatar_url }}" alt="">
         </div>
         <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/admin/chefs/1"><p>Visualizar</p></a>
+          <h3>{{ chef.name }}</h3>
+          <a href="/admin/chefs/{{ chef.id }}"><p>Visualizar</p></a>
         </div>
       </div>
-      <div class="chef-card">
-        <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        </div>
-        <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/"><p>Visualizar</p></a>
-        </div>
-      </div>
-      <div class="chef-card">
-        <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        </div>
-        <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/"><p>Visualizar</p></a>
-        </div>
-      </div>
-      <div class="chef-card">
-        <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        </div>
-        <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/"><p>Visualizar</p></a>
-        </div>
-      </div>
-      <div class="chef-card">
-        <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        </div>
-        <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/"><p>Visualizar</p></a>
-        </div>
-      </div>
-      <div class="chef-card">
-        <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        </div>
-        <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/"><p>Visualizar</p></a>
-        </div>
-      </div>
-      <div class="chef-card">
-        <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        </div>
-        <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/"><p>Visualizar</p></a>
-        </div>
-      </div>
-      <div class="chef-card">
-        <div class="chef-img">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
-        </div>
-        <div class="chef-about">
-          <h3>Júlia Kinoto</h3>
-          <a href="/"><p>Visualizar</p></a>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock content %}

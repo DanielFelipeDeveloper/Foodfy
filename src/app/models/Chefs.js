@@ -2,6 +2,12 @@ const db = require('../../config/db');
 const { date } = require('../../lib/utils');
 
 module.exports = {
+  all(callback) {
+    db.query('SELECT * FROM chefs', (err, results) => {
+      if (err) console.log(`Database Error! ${err}`)
+      callback(results.rows)
+    })
+  },
   create(data, callback) {
     const query = `
       INSERT INTO chefs (
@@ -26,9 +32,11 @@ module.exports = {
   },
   find(id, callback) {
     db.query(`
-      SELECT * 
-      from chefs 
-      WHERE id = $1`, [id], (err, results) => {
+      SELECT chefs.*, count(recipes) AS total_recipes
+      FROM chefs 
+      LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+      WHERE chefs.id = $1
+      GROUP BY chefs.id`, [id], (err, results) => {
         if (err) console.log(`Database Error! ${err}`)
         callback(results.rows[0])
       })
