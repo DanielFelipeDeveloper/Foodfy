@@ -25,6 +25,9 @@
   <div>Chef</div>
   <select name="" id="edit">
     <option value="" disabled selected>Selecione um chef</option>
+    {% for chef in chefs %}
+      <option value="{{ chef.id }}">{{ chef.name }}</option>
+    {% endfor %}
   </select>
 </div>
 
