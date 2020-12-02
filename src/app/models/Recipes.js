@@ -42,9 +42,10 @@ module.exports = {
   },
   find(id, callback) {
     db.query(`
-      SELECT *
+      SELECT recipes.*, chefs.name AS chef_name
       from recipes
-      WHERE id = $1`, [id], (err, results) => {
+      LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
+      WHERE recipes.id = $1`, [id], (err, results) => {
         if (err) throw `Database Error! ${err}`
         callback(results.rows[0])
       })

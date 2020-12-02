@@ -19,7 +19,7 @@ module.exports = {
     Recipes.find(recipeId, (recipe) => {
       if (!recipe) return res.send('Recipe not found!')
       
-      return res.render('user/recipe', { item: recipe })
+      return res.render('user/recipe', { recipe })
     })
   }
 }

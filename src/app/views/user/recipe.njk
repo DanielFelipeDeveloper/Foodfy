@@ -10,9 +10,9 @@
 {% block content%}
     <section class="recipe-content">
         <div class="image-recipe">
-            <img src="{{item.image}}" alt="Imagem de {{item.title}}">
-            <h3>{{item.title}}</h3>
-            <p>{{item.author}}</p>
+            <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+            <h3>{{recipe.title}}</h3>
+            <p>{{recipe.chef_name}}</p>
         </div>
     </section>
 
@@ -21,7 +21,7 @@
             <h2>Ingredientes<a class="showOrHide">ESCONDER</a>
             </h2>
             <ul class="data">
-                {% for ingredient in item.ingredients %}
+                {% for ingredient in recipe.ingredients %}
                     <li>{{ingredient}}</li>
                 {% endfor %}
             </ul>
@@ -31,7 +31,7 @@
             <h2>Modo de preparo<a class="showOrHide">ESCONDER</a>
             </h2>
             <ul class="data">
-                {% for step in item.preparation %}
+                {% for step in recipe.preparation %}
                     <li>{{step}}</li>
                 {% endfor %}
             </ul>
@@ -40,7 +40,7 @@
         <div class="recipe info">
             <h2>Informações adicionais<a class="showOrHide">ESCONDER</a>
             </h2>
-            <p class="data">{{item.information}}</p>
+            <p class="data">{{recipe.information}}</p>
         </div>
     </nav>
     <script src="/scripts/recipes.js"></script>
