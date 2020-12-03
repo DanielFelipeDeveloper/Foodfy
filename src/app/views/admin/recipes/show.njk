@@ -11,7 +11,7 @@
     </div>
     <div class="recipe-title">
       <h2>{{recipe.title}}</h2>
-      <p>{{recipe.author}}</p>
+      <p>{{recipe.chef_name}}</p>
     </div>
     <div class="recipe-content"> 
       <div class="recipe-section">
@@ -25,7 +25,7 @@
 
       <div class="recipe-section">
         <h2>Modo de preparo</h2>
-        <ul>
+        <ul class="preparation">
         {% for preparation in recipe.preparation %}
           <li>{{preparation}}</li>
         {% endfor %}

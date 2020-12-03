@@ -263,6 +263,10 @@ button#delete {
     line-height: 28px;
 }
 
+.recipe-section ul.preparation li {
+    list-style-type: decimal;
+}
+
 .recipe-content p {
     font-size: 18px;
     color: #444444;
