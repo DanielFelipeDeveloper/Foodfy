@@ -56,9 +56,7 @@ module.exports = {
     })
   },
   delete(req, res) {
-    const { id } = req.body
-    
-    Recipes.delete(id, () => {
+    Recipes.delete(req.body.id, () => {
       return res.redirect('/admin/recipes')
     })
   }
