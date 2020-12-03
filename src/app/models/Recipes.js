@@ -67,16 +67,18 @@ module.exports = {
       UPDATE recipes SET 
         image=($1),
         title=($2),
-        ingredients=($3),
-        preparation=($4),
-        information=($5),
-        updated_at=($6)
-      WHERE id = ($7)
+        chef_id=($3),
+        ingredients=($4),
+        preparation=($5),
+        information=($6),
+        updated_at=($7)
+      WHERE id = ($8)
     `
 
     const values = [
       data.image,
       data.title,
+      data.chef_id,
       data.ingredients,
       data.preparation,
       data.information,

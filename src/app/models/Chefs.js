@@ -40,5 +40,27 @@ module.exports = {
         if (err) console.log(`Database Error! ${err}`)
         callback(results.rows[0])
       })
+  },
+  update(data, callback) {
+    const query = `
+      UPDATE chefs SET
+        name=($1),
+        avatar_url=($2),
+        updated_at=($3)
+      WHERE id = ($4)  
+    `
+
+    const values = [
+      data.name,
+      data.avatar_url,
+      date(Date.now()).iso,
+      data.id
+    ]
+
+    db.query(query, values, (err, results) => {
+      if (err) throw `Database Error! ${err}`
+
+      return callback()
+    })
   }
 }

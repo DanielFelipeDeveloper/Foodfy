@@ -20,7 +20,11 @@ module.exports = {
     })
   },
   edit(req, res) {
-    return res.render('admin/chefs/edit')
+    Chefs.find(req.params.id, (chef) => {
+      if(!chef) return res.send('Chef not found!')
+
+      return res.render('admin/chefs/edit', { chef })
+    })
   },
   post(req, res) {
     const keys = Object.keys(req.body)
@@ -31,6 +35,17 @@ module.exports = {
 
     Chefs.create(req.body, (chef) => {
       return res.redirect(`/admin/chefs/${chef.id}`)
+    })
+  },
+  put(req, res) {
+    const keys = Object.keys(req.body)
+
+    for (key of keys) {
+      if (req.body[key] == "") return res.send("Please, fill all fields")
+    }
+
+    Chefs.update(req.body, () => {
+      return res.redirect(`/admin/chefs/${req.body.id}`)
     })
   }
 }

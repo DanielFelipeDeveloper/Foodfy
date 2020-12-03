@@ -1,9 +1,9 @@
 const express = require('express');
 const routes = express.Router();
 
-const userController = require('./app/controllers/user-controller');
-const recipeController = require('./app/controllers/recipe-controller');
-const chefController = require('./app/controllers/chef-controller');
+const userController = require('./app/controllers/UserController');
+const recipeController = require('./app/controllers/RecipeController');
+const chefController = require('./app/controllers/ChefController');
 
 /* USER ROUTES */
 routes.get('/', userController.index)
@@ -30,6 +30,7 @@ routes.get('/admin/chefs/:id', chefController.show)
 routes.get('/admin/chefs/:id/edit', chefController.edit)
 
 routes.post('/admin/chefs', chefController.post)
+routes.put('/admin/chefs', chefController.put)
 
 
 module.exports = routes;
