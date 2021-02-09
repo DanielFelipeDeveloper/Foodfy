@@ -9,9 +9,17 @@ module.exports = {
     res.render('user/about')
   },
   showAllRecipes(req, res) {
-    Recipes.all((recipes) => {
-      return res.render('user/recipes', { recipes })
-    })
+    const { filter } = req.query;
+
+    if (filter) {
+      Recipes.findByFilter(filter, (recipes) => {
+        return res.render('user/recipes', { recipes })
+      })
+    } else {
+      Recipes.all((recipes) => {
+        return res.render('user/recipes', { recipes })
+      })
+    }
   },
   showTheRecipe(req, res) {
     const recipeId = req.params.index

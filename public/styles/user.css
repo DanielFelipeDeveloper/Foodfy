@@ -19,11 +19,49 @@
     margin-right: 122.4px;
 }
 
+.menu {
+    width: 100%;
+}
+
 .menu a {
     margin-right: 30px;
     font-size: 16px;
     line-height: 26px;
     color: #111111 ;
+}
+
+.search {
+    width: 100%;
+    text-align: right;
+}
+
+.search input {
+    margin-right: 8px;
+    padding: 11px 110px 10px 15px;
+    width: 246px;
+    height: 37px;
+    border: 1px solid;
+    border-radius: 4px;
+    border-color: #DDDDDD;
+    color: #111111;
+}
+
+.search button {
+    background-color: #6558C3;
+    color: #fff;
+    padding: 9px 20px;
+    border: 0;
+    border-radius: 4px;
+    height: 37px;
+    width: 91px;
+    font-size: 15px;
+    font-weight: bolder;
+
+    cursor: pointer;
+}
+
+::placeholder {
+    color: #999999;
 }
 
 /*== APRESENTAÇÃO DA PÁGINA ==*/
