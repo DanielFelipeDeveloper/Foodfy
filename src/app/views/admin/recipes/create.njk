@@ -12,72 +12,79 @@
       Salvar receita
       </button>
     </div>
-      <div class="form">
-        <div>Titulo da Receita</div>
-        <div>
-          <input 
-            type="text"
-            name="title"
-          >
-        </div>
-      </div>
 
-      <div class="form">
-        <div>Imagem da receita</div>
-        <div>
-          <input 
-            type="url"
-            name="image"
-            placeholder="https://..."
-          >
+    <div class="form">
+      <div>Imagem da receita</div>
+        <div id="photos-upload">
+          <div>
+            <img src="/assets/add.svg" alt="add icon">
+            <input 
+                id="photos-input"
+                type="file" 
+                name="photos" 
+                multiple
+                accept="image/*"
+                onChange="PhotosUpload.handleFileInput(event)"
+            >
+          </div>
         </div>
+    </div>
+      
+    <div class="form">
+      <div>Titulo da Receita</div>
+      <div>
+        <input 
+          type="text"
+          name="title"
+        >
       </div>
+    </div>
 
-      <div class="form">
-        <div>Chef</div>
-        <select name="chef_id">
-          <option value="" disabled selected>Selecione um chef</option>
-          {% for chef in chefs %}
-            <option value="{{ chef.id }}" name="chef_id" >{{ chef.name }}</option>
-          {% endfor %}
-        </select>
-      </div>
+    <div class="form">
+      <div>Chef</div>
+      <select name="chef_id">
+        <option value="" disabled selected>Selecione um chef</option>
+        {% for chef in chefs %}
+          <option value="{{ chef.id }}" name="chef_id" >{{ chef.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
 
-      <div class="form" id="ingredients">
-        <div>Ingredientes</div>
-        <div class="ingredient">
-          <input 
-            type="text" 
-            name="ingredients[]" 
-            value="" 
-            placeholder="Ingredientes" 
-          />
-        </div>
+    <div class="form" id="ingredients">
+      <div>Ingredientes</div>
+      <div class="ingredient">
+        <input 
+          type="text" 
+          name="ingredients[]" 
+          value="" 
+          placeholder="Ingredientes" 
+        />
       </div>
-        <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+    </div>
+      <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
 
-      <div class="form" id="preparations">
-        <div>Modo de preparo</div>
-        <div class="preparation">
-          <input 
-            type="text" 
-            name="preparation[]" 
-            value="" 
-            placeholder="Modo de Preparo / Passo a passo" 
-          />
-        </div>
+    <div class="form" id="preparations">
+      <div>Modo de preparo</div>
+      <div class="preparation">
+        <input 
+          type="text" 
+          name="preparation[]" 
+          value="" 
+          placeholder="Modo de Preparo / Passo a passo" 
+        />
       </div>
-        <button type="button" class="add-preparation">Adicionar novo passo</button>
+    </div>
+      <button type="button" class="add-preparation">Adicionar novo passo</button>
 
-      <div class="form">
-        <div>Informações adicionais</div>
-        <div>
-          <input 
-            name="information" 
-            class="information" 
-          >
-        </div>
+    <div class="form">
+      <div>Informações adicionais</div>
+      <div>
+        <input 
+          name="information" 
+          class="information" 
+        >
       </div>
+    </div>
   </form>
   <script src="/scripts/dynamicField.js"></script>
 {% endblock content %}

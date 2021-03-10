@@ -10,6 +10,7 @@ for (let cardRecipe of cardsRecipes) {
 }
 
 for (let recipe of recipes) {
+    console.log(recipe)
     let data = recipe.querySelector('.data')
     let click = recipe.querySelector('.showOrHide')
 
