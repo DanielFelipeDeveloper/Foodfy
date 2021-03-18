@@ -191,12 +191,10 @@ button#delete {
     width: 100%;
     height: 150px;
 
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 10.5px;
+    display: flex;
 }
 
-.form #photos-upload > div {
+.form #photos-upload #photo-upload {
     position: relative;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
@@ -208,9 +206,9 @@ button#delete {
     align-items: center;
 }
 
-.form #photos-upload > div img {
-    width: 28px;
-    height: 28px;
+.form #photos-upload i {
+    color: #999999;
+    font-size: 40px;
 }
 
 .form #photos-upload input#photos-input {
@@ -229,6 +227,54 @@ button#delete {
     cursor: pointer;
 
 }
+
+.form #photos-preview {
+    width: calc(100% - 150px);
+    height: 100%;
+
+    display: flex;
+}
+
+.form #photos-preview .photo {
+    position: relative;
+
+    margin: 0 10px;
+    width: 150px;
+    height: 100%;
+}
+
+.form #photos-preview .photo img {
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form #photos-preview .photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,0.8);
+  
+    color: red;
+  
+    width: 100%;
+    height: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    font-size: 40px;
+    cursor: pointer;
+  
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .form #photos-preview .photo:hover i {
+    opacity: 1;
+  }
 
 /* SHOW */
 

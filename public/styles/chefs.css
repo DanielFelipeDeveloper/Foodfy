@@ -1,5 +1,7 @@
 .chef-content {
+  width: 100%;
   min-width: 940px;
+  max-width: 940px;
   margin: 50px auto;
 }
 
