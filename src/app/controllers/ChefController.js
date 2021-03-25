@@ -1,9 +1,9 @@
-const Chefs = require("../models/Chefs")
-const Recipes = require("../models/Recipes")
+const Chef = require("../models/Chef")
+const Recipe = require("../models/Recipe")
 
 module.exports = {
   index(req, res) {
-    Chefs.all((chefs) => {
+    Chef.all((chefs) => {
       return res.render('admin/chefs/index', { chefs })
     })
   },
@@ -11,16 +11,16 @@ module.exports = {
     return res.render('admin/chefs/create')
   },
   show(req, res) {
-    Chefs.find(req.params.id, (chef) => {
+    Chef.find(req.params.id, (chef) => {
       if (!chef) return res.send('Chef not found!')
 
-      Recipes.findByChef(req.params.id, (recipes) => {
+      Recipe.findByChef(req.params.id, (recipes) => {
         return res.render('admin/chefs/show', { chef, recipes })
       })
     })
   },
   edit(req, res) {
-    Chefs.find(req.params.id, (chef) => {
+    Chef.find(req.params.id, (chef) => {
       if(!chef) return res.send('Chef not found!')
 
       return res.render('admin/chefs/edit', { chef })
@@ -33,7 +33,7 @@ module.exports = {
       if (req.body[key] == "") return res.send("Please, fill all fields")
     }
 
-    Chefs.create(req.body, (chef) => {
+    Chef.create(req.body, (chef) => {
       return res.redirect(`/admin/chefs/${chef.id}`)
     })
   },
@@ -44,12 +44,12 @@ module.exports = {
       if (req.body[key] == "") return res.send("Please, fill all fields")
     }
 
-    Chefs.update(req.body, () => {
+    Chef.update(req.body, () => {
       return res.redirect(`/admin/chefs/${req.body.id}`)
     })
   },
   delete(req, res) {
-    Chefs.delete(req.body.id, () => {
+    Chef.delete(req.body.id, () => {
       return res.redirect('/admin/chefs')
     })
   }

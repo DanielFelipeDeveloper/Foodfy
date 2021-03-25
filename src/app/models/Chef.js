@@ -2,11 +2,9 @@ const db = require('../../config/db');
 const { date } = require('../../lib/utils');
 
 module.exports = {
-  all(callback) {
-    db.query('SELECT * FROM chefs', (err, results) => {
-      if (err) console.log(`Database Error! ${err}`)
-      callback(results.rows)
-    })
+  async all() {
+    const results = await db.query('SELECT * FROM chefs')
+    return results.rows
   },
   create(data, callback) {
     const query = `
@@ -30,16 +28,15 @@ module.exports = {
       callback(results.rows[0])
     })
   },
-  find(id, callback) {
-    db.query(`
+  async find(id) {
+    const results = await db.query(`
       SELECT chefs.*, count(recipes) AS total_recipes
       FROM chefs 
       LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
       WHERE chefs.id = $1
-      GROUP BY chefs.id`, [id], (err, results) => {
-        if (err) console.log(`Database Error! ${err}`)
-        callback(results.rows[0])
-      })
+      GROUP BY chefs.id`, [id]
+    )
+    return results.rows[0]
   },
   update(data, callback) {
     const query = `

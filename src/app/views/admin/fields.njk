@@ -9,17 +9,37 @@
   </div>
 </div>
 
-<div class="form">
-  <div>Imagem da receita</div>
-  <div>
-    <input 
-      type="url" 
-      name="image" 
-      placeholder="https://..." 
-      value="{{recipe.image}}"
-    >
-  </div>
-</div>
+ <div class="form">
+      <div>Imagem da receita</div>
+        <div id="photos-upload">
+          <div id="photo-upload">
+            <i class="material-icons">add</i>
+            <input 
+                id="photos-input"
+                type="file" 
+                name="photos" 
+                multiple
+                accept="image/*"
+                onChange="PhotosUpload.handleFileInput(event)"
+            >
+          </div>
+          <div id="photos-preview">
+            {% if files %}
+                {% for image in files %}
+                    <div class="photo" id="{{image.id}}">
+                        <img src="{{image.src}}" alt="{{image.name}}">
+                        <i class="material-icons"
+                            onclick="PhotosUpload.removeOldPhoto(event)"
+                        >
+                        close
+                        </i>
+                    </div>
+                {% endfor %}
+                <input type="hidden" name="removed_files">
+            {% endif %}
+          </div>
+        </div>
+    </div>
 
 <div class="form">
   <div>Chef</div>

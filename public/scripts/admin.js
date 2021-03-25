@@ -10,7 +10,7 @@ for (item of menuItems) {
 const PhotosUpload = {
   preview: document.querySelector('#photos-preview'), 
   input: "",
-  uploadLimit: 6,
+  uploadLimit: 5,
   files: [],
   handleFileInput(event) {
     const { files: fileList } = event.target;
@@ -98,6 +98,16 @@ const PhotosUpload = {
 
     PhotosUpload.files.splice(index, 1);
     PhotosUpload.input.files = PhotosUpload.getAllFiles();
+
+    photoDiv.remove();
+  },
+  removeOldPhoto(event) {
+    const photoDiv = event.target.parentNode;
+
+    if (photoDiv.id) {
+      const removedFiles = document.querySelector('input[name="removed_files"]')
+      if (removedFiles) removedFiles.value += `${photoDiv.id},`
+    }
 
     photoDiv.remove();
   }

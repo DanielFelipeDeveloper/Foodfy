@@ -1,4 +1,5 @@
 const db = require('../../config/db');
+const File = require('./File');
 const { date } = require('../../lib/utils');
 
 module.exports = {
@@ -12,45 +13,72 @@ module.exports = {
       callback(results.rows)
     })
   },
-  create(data, callback) {
+  async create(data, callback) {
     const query = `
       INSERT INTO recipes (
         title,
-        image,
         chef_id,
         ingredients,
         preparation,
         information,
         created_at
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+      ) VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING id
-    `
+    `;
 
     const values = [
       data.title,
-      data.image,
       Number(data.chef_id),
       data.ingredients,
       data.preparation,
       data.information,
       date(Date.now()).iso
-    ]
+    ];
 
-    db.query(query, values, (err, results) => {
-      if (err) return console.log(`Database Error! ${err}`)
-
-      callback(results.rows[0])
-    })
+    const results = await db.query(query, values);
+    return results.rows[0];
   },
-  find(id, callback) {
-    db.query(`
+  async find(id) {
+    const results = await db.query(`
       SELECT recipes.*, chefs.name AS chef_name
       from recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
-      WHERE recipes.id = $1`, [id], (err, results) => {
-        if (err) throw `Database Error! ${err}`
-        callback(results.rows[0])
-      })
+      WHERE recipes.id = $1`, [id])
+    
+    return results.rows[0]
+  },
+  async createFile(values) {
+    const file = await File.create({
+      name: values.file.filename,
+      path: values.file.path,
+    });
+
+    const query = `
+      INSERT INTO recipe_files (
+          recipe_id,
+          file_id
+      ) VALUES (
+          $1,
+          $2
+      )
+    `;
+
+    return db.query(query, [values.recipe_id, file.id]);
+  },
+  async files(recipe_id) {
+    const files = [];
+    const query = `
+      SELECT file_id FROM recipe_files 
+      WHERE recipe_id = $1
+    `
+    const results = await db.query(query, [recipe_id])
+    
+    for (result of results.rows) {
+      const file = await File.find(result.file_id);
+      files.push(file);
+    }
+
+    return files;
   },
   findByFilter(filter, callback) {
     db.query(`
@@ -73,21 +101,19 @@ module.exports = {
         callback(results.rows)
       })
   },
-  update(data, callback) {
+  update(data) {
     const query = `
       UPDATE recipes SET 
-        image=($1),
-        title=($2),
-        chef_id=($3),
-        ingredients=($4),
-        preparation=($5),
-        information=($6),
-        updated_at=($7)
-      WHERE id = ($8)
+        title=($1),
+        chef_id=($2),
+        ingredients=($3),
+        preparation=($4),
+        information=($5),
+        updated_at=($6)
+      WHERE id = ($7)
     `
 
     const values = [
-      data.image,
       data.title,
       data.chef_id,
       data.ingredients,
@@ -97,11 +123,7 @@ module.exports = {
       data.id
     ]
 
-    db.query(query, values, (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      return callback()
-    })
+    return db.query(query, values);
   },
   delete(id, callback) {
     db.query(`DELETE from recipes WHERE id = $1`, [id], (err, results) => {

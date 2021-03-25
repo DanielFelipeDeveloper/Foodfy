@@ -7,7 +7,7 @@
       <a href="/admin/recipes/{{recipe.id}}/edit"><button>Editar Receita</button></a>
     </div>
     <div class="recipe-image">
-      <img src={{recipe.image}} alt="">
+      <img src={{file.path}}>
     </div>
     <div class="recipe-title">
       <h2>{{recipe.title}}</h2>
@@ -37,6 +37,5 @@
         <p>{{recipe.information}}</p>
       </div>
     </div>
-
   </div>
 {% endblock content %}

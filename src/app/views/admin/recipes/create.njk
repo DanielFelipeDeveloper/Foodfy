@@ -1,7 +1,8 @@
 {% extends 'admin/layout.njk' %}
 
 {% block content %}
-  <form class="form-content" method="POST" action="/admin/recipes"  >
+
+  <form class="form-content" method="POST" action="/admin/recipes" enctype="multipart/form-data">
     <div class="form-header">
       <h2>Criando receita</h2>
       <button 
@@ -62,7 +63,8 @@
         />
       </div>
     </div>
-      <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+
+    <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
 
     <div class="form" id="preparations">
       <div>Modo de preparo</div>
@@ -75,7 +77,8 @@
         />
       </div>
     </div>
-      <button type="button" class="add-preparation">Adicionar novo passo</button>
+
+    <button type="button" class="add-preparation">Adicionar novo passo</button>
 
     <div class="form">
       <div>Informações adicionais</div>
@@ -87,5 +90,7 @@
       </div>
     </div>
   </form>
+
   <script src="/scripts/dynamicField.js"></script>
+
 {% endblock content %}
