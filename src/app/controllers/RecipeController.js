@@ -3,10 +3,17 @@ const Recipe = require('../models/Recipe');
 const File = require('../models/File');
 
 module.exports = {
-  index(req, res) {
-    Recipe.all(recipes => {
-      return res.render('admin/recipes/index', { recipes })
-    })
+  async index(req, res) {
+    let recipes = await Recipe.all();
+
+    for (recipe of recipes) {
+      let file = await Recipe.files(recipe.id);
+      let src = `${req.protocol}://${req.headers.host}${file[0].path.replace('public', '')}`;
+
+      recipe.src = src;
+    }
+
+    return res.render('admin/recipes/index', { recipes });
   },
   async create(req, res) {
     const chefs = await Chefs.all()
@@ -21,7 +28,12 @@ module.exports = {
       return res.send('Recipe not found!')
     } 
 
-    const files = await Recipe.files(id);
+    let files = await Recipe.files(id);
+
+    files = files.map(file => ({
+      ...file,
+      src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+    }));
 
     res.render('admin/recipes/show', { recipe, files })
   },
@@ -54,12 +66,12 @@ module.exports = {
     const recipe = await Recipe.create(req.body);
 
     const recipeFilesPromises = req.files.map((file) =>
-      Recipe.createFile({ file, recipe_id: recipe.rows[0].id })
+      Recipe.createFile({ file, recipe_id: recipe.id })
     );
 
     await Promise.all(recipeFilesPromises);
 
-    return res.redirect(`/admin/recipes/${recipe.rows[0].id}`)
+    return res.redirect(`/admin/recipes/${recipe.id}`)
   },
   async put(req, res) {
     const keys = Object.keys(req.body);

@@ -3,15 +3,14 @@ const File = require('./File');
 const { date } = require('../../lib/utils');
 
 module.exports = {
-  all(callback) {
-    db.query(`
+  async all() {
+    const results = await db.query(`
       SELECT recipes.*, chefs.name AS chef_name
       from recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
-      ORDER BY recipes.id`, (err, results) => {
-      if (err) throw `Database Error! ${err}`
-      callback(results.rows)
-    })
+      ORDER BY recipes.id`);
+      
+    return results.rows;
   },
   async create(data, callback) {
     const query = `
@@ -91,15 +90,14 @@ module.exports = {
       callback(results.rows)
     })
   },
-  findByChef(id, callback) {
-    db.query(`
+  async findByChef(id) {
+    const results = await db.query(`
       SELECT *
       from recipes
       WHERE chef_id = $1
-      ORDER BY id ASC`, [id], (err, results) => {
-        if (err) throw `Database Error! ${err}`
-        callback(results.rows)
-      })
+      ORDER BY id ASC`, [id]);
+
+      return results.rows;
   },
   update(data) {
     const query = `

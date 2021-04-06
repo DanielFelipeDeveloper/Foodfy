@@ -244,6 +244,54 @@
     line-height: 28px;
 }
 
+/*== CHEFS ==*/
+
+.chefs-content {
+    width: 100%;
+    max-width: 940px;
+    margin: 25px auto;
+}
+
+.chef-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.chef-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chef-image {
+    width: 64px;
+    height: 64px;
+}
+
+.chef-image img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.chef-about {
+    margin-left: 20px;
+}
+
+.chef-about h3 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #111111;
+}
+
+.chef-about p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+}
+
 /*== FOOTER ==*/
 
 footer {

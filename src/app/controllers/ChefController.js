@@ -2,29 +2,28 @@ const Chef = require("../models/Chef")
 const Recipe = require("../models/Recipe")
 
 module.exports = {
-  index(req, res) {
-    Chef.all((chefs) => {
-      return res.render('admin/chefs/index', { chefs })
-    })
+  async index(req, res) {
+    const chefs = await Chef.all();
+    return res.render('admin/chefs/index', { chefs });
   },
   create(req, res) {
-    return res.render('admin/chefs/create')
+    return res.render('admin/chefs/create');
   },
-  show(req, res) {
-    Chef.find(req.params.id, (chef) => {
-      if (!chef) return res.send('Chef not found!')
+  async show(req, res) {
+    const chef = await Chef.find(req.params.id);
 
-      Recipe.findByChef(req.params.id, (recipes) => {
-        return res.render('admin/chefs/show', { chef, recipes })
-      })
-    })
+    if (!chef) return res.send('Chef not found!');
+
+    const recipes = await Recipe.findByChef(req.params.id);
+
+    return res.render('admin/chefs/show', { chef, recipes });
   },
-  edit(req, res) {
-    Chef.find(req.params.id, (chef) => {
-      if(!chef) return res.send('Chef not found!')
+  async edit(req, res) {
+    const chef = await Chef.find(req.params.id);
 
-      return res.render('admin/chefs/edit', { chef })
-    })
+    if(!chef) return res.send('Chef not found!');
+    
+    return res.render('admin/chefs/edit', { chef });
   },
   post(req, res) {
     const keys = Object.keys(req.body)

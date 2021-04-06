@@ -1,14 +1,21 @@
+const Chef = require('../models/Chef');
 const Recipe = require('../models/Recipe');
+
 module.exports = {
-  index(req, res) {
-    Recipe.all((recipes) => {
-      return res.render('user/index', { recipes })
-    })
+  async index(req, res) {
+    const recipes = await Recipe.all();
+
+    return res.render('user/index', { recipes })
   },
   about(req, res) {
     res.render('user/about')
   },
-  showAllRecipes(req, res) {
+  async chefs(req, res) {
+    const chefs = await Chef.all();
+
+    return res.render('user/chefs', { chefs });
+  },
+  async showAllRecipes(req, res) {
     const { filter } = req.query;
 
     if (filter) {
@@ -16,9 +23,9 @@ module.exports = {
         return res.render('user/recipes', { recipes })
       })
     } else {
-      Recipe.all((recipes) => {
-        return res.render('user/recipes', { recipes })
-      })
+      const recipes = await Recipe.all();
+
+      return res.render('user/recipes', { recipes })
     }
   },
   showTheRecipe(req, res) {
