@@ -1,4 +1,5 @@
-const Chef = require("../models/Chef")
+const Chef = require("../models/Chef");
+const File = require("../models/File");
 const Recipe = require("../models/Recipe")
 
 module.exports = {
@@ -10,13 +11,17 @@ module.exports = {
     return res.render('admin/chefs/create');
   },
   async show(req, res) {
-    const chef = await Chef.find(req.params.id);
+    const { id } = req.params;
+    const chef = await Chef.find(id);
 
     if (!chef) return res.send('Chef not found!');
 
-    const recipes = await Recipe.findByChef(req.params.id);
+    const recipes = await Recipe.findByChef(id);
+    let file = await File.find(chef.file_id);
 
-    return res.render('admin/chefs/show', { chef, recipes });
+    file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
+
+    return res.render('admin/chefs/show', { chef, recipes, file });
   },
   async edit(req, res) {
     const chef = await Chef.find(req.params.id);
