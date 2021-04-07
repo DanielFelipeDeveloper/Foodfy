@@ -1,4 +1,5 @@
 const db = require('../../config/db');
+const File = require('../models/File');
 const { date } = require('../../lib/utils');
 
 module.exports = {
@@ -11,27 +12,29 @@ module.exports = {
     `)
     return results.rows
   },
-  create(data, callback) {
+  async create(data) {
+    const file = await File.create({
+      name: data.file.filename,
+      path: data.file.path,
+    });
+
     const query = `
       INSERT INTO chefs (
         name,
-        avatar_url,
+        file_id,
         created_at
       ) VALUES ($1, $2, $3)
       RETURNING id  
-    `
+    `;
 
     const values = [
-      data.name,
-      data.avatar_url,
+      data.chef.name,
+      file.id,
       date(Date.now()).iso
-    ]
+    ];
 
-    db.query(query, values, (err, results) => {
-      if (err) return console.log(`Database Error! ${err}`)
-
-      callback(results.rows[0])
-    })
+    const results = await db.query(query, values);
+    return results.rows[0];
   },
   async find(id) {
     const results = await db.query(`

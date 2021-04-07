@@ -25,16 +25,16 @@ module.exports = {
     
     return res.render('admin/chefs/edit', { chef });
   },
-  post(req, res) {
+  async post(req, res) {
     const keys = Object.keys(req.body)
 
     for (key of keys) {
       if (req.body[key] == "") return res.send("Please, fill all fields")
     }
 
-    Chef.create(req.body, (chef) => {
-      return res.redirect(`/admin/chefs/${chef.id}`)
-    })
+    const chef = await Chef.create({ chef: req.body, file: req.file });
+    
+    return res.redirect(`/admin/chefs/${chef.id}`);
   },
   put(req, res) {
     const keys = Object.keys(req.body)

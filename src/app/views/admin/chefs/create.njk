@@ -1,7 +1,7 @@
 {% extends 'admin/layout.njk' %}
 
 {% block content %}
-  <form class="chef-content" method="POST" action="/admin/chefs">
+  <form class="chef-content" method="POST" action="/admin/chefs" enctype="multipart/form-data">
     <div class="form-header">
       <h2>Criando chef</h2>
       <button
@@ -22,9 +22,23 @@
 
     <div class="form">
       <div>Avatar</div>
+      <div id="file-uploads">
+        <input 
+          type="file" 
+          name="photo"
+          id="input-file"
+          accept="image/*"
+          onChange="PhotosUpload.handleFileInput(event)"
+        >
+        <p>Enviar Avatar</p>
+      </div>
+    </div>
+
+    {# <div class="form">
+      <div>Avatar</div>
       <div>
         <input type="url" name="avatar_url">
       </div>
-    </div>
+    </div> #}
   </form>
 {% endblock content %}
