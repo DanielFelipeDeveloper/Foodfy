@@ -60,16 +60,23 @@ module.exports = {
     
     return res.redirect(`/admin/chefs/${chef.id}`);
   },
-  put(req, res) {
+  async put(req, res) {
     const keys = Object.keys(req.body)
 
     for (key of keys) {
       if (req.body[key] == "") return res.send("Please, fill all fields")
     }
 
-    Chef.update(req.body, () => {
-      return res.redirect(`/admin/chefs/${req.body.id}`)
-    })
+    const { file_id } = await Chef.find(req.body.id);
+    const file = await File.find(file_id);
+
+    if (req.file.filename != file.name) {
+      await File.update(file_id, req.file, file);
+    }
+
+    await Chef.update(req.body);
+
+    return res.redirect(`/admin/chefs/${req.body.id}`)
   },
   async delete(req, res) {
     const { id } = req.body;
