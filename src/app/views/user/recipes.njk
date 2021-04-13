@@ -17,6 +17,7 @@
             type="text" 
             name="filter"
             placeholder="Buscar uma receita"
+            value="{{ filter }}"
         >
         <button type="submit">Buscar</button>
     </form>
@@ -27,7 +28,7 @@
         <div class="cards-recipes">
             {% for recipe in recipes %}
                 <div class="card-recipe" id='{{ recipe.id }}'>
-                    <img src={{ recipe.image }} alt="Imagem de {{recipe.title}}">
+                    <img src="{{ recipe.file_src }}" alt="Imagem de {{recipe.title}}">
                     <h3>{{recipe.title}}</h3>
                     <p>{{recipe.chef_name}}</p>
                 </div>

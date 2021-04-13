@@ -79,16 +79,14 @@ module.exports = {
 
     return files;
   },
-  findByFilter(filter, callback) {
-    db.query(`
+  async findByFilter(filter) {
+    const results = await db.query(`
       SELECT recipes.*, chefs.name AS chef_name
       from recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
       WHERE recipes.title ILIKE '%${filter}%'
-      ORDER BY recipes.id`, (err, results) => {
-      if (err) throw `Database Error! ${err}`
-      callback(results.rows)
-    })
+      ORDER BY recipes.id`);
+    return results.rows;
   },
   async findByChef(id) {
     const results = await db.query(`

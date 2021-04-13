@@ -270,7 +270,8 @@
 }
 
 .chef-image img {
-    width: 100%;
+    width: 64px;
+    height: 64px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -282,7 +283,6 @@
 .chef-about h3 {
     font-weight: 400;
     font-size: 18px;
-    line-height: 28px;
     color: #111111;
 }
 
