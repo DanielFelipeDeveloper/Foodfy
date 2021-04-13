@@ -21,7 +21,18 @@
         <div class="form">
           <div>Avatar</div>
           <div>
-            <input type="url" name="avatar_url" value="{{chef.avatar_url}}">
+            <input type="url" name="avatar_url" value="{{ file.src }}">
+          </div>
+
+          <div id="file-uploads">
+            <input 
+              type="file" 
+              name="photo"
+              id="input-file"
+              accept="image/*"
+              onChange="PhotosUpload.handleFileInput(event)"
+            >
+            <p>Enviar Avatar</p>
           </div>
         </div>
 

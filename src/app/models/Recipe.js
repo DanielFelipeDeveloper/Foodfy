@@ -123,11 +123,7 @@ module.exports = {
 
     return db.query(query, values);
   },
-  delete(id, callback) {
-    db.query(`DELETE from recipes WHERE id = $1`, [id], (err, results) => {
-      if (err) throw `Database Error! ${err}`
-
-      return callback()
-    })
+  delete(id) {
+    return db.query(`DELETE from recipes WHERE id = $1`, [id]);
   }
 }

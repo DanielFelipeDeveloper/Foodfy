@@ -10,7 +10,7 @@ module.exports = {
       let file = await Recipe.files(recipe.id);
       let src = `${req.protocol}://${req.headers.host}${file[0].path.replace('public', '')}`;
 
-      recipe.src = src;
+      recipe.file_src = src;
     }
 
     return res.render('admin/recipes/index', { recipes });
@@ -104,9 +104,16 @@ module.exports = {
 
     return res.redirect(`/admin/recipes/${req.body.id}`);
   },
-  delete(req, res) {
-    Recipe.delete(req.body.id, () => {
-      return res.redirect('/admin/recipes')
-    })
+  async delete(req, res) {
+    const { id } = req.body;
+
+    const files = await Recipe.files(id);
+
+    const removedFilesPromise = files.map(file => File.delete(file.id));
+    await Promise.all(removedFilesPromise);
+
+    await Recipe.delete(id);
+
+    return res.redirect('/admin/recipes');
   }
 }

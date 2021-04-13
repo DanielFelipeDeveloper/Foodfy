@@ -5,6 +5,13 @@ const Recipe = require("../models/Recipe")
 module.exports = {
   async index(req, res) {
     const chefs = await Chef.all();
+
+    for (chef of chefs) {
+      file = await File.find(chef.file_id);
+
+      chef.file_src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
+    }
+
     return res.render('admin/chefs/index', { chefs });
   },
   create(req, res) {
@@ -17,6 +24,14 @@ module.exports = {
     if (!chef) return res.send('Chef not found!');
 
     const recipes = await Recipe.findByChef(id);
+
+    for (recipe of recipes) {
+      let file = await Recipe.files(recipe.id);
+      let src = `${req.protocol}://${req.headers.host}${file[0].path.replace('public', '')}`;
+
+      recipe.file_src = src;
+    }
+
     let file = await File.find(chef.file_id);
 
     file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
@@ -27,8 +42,12 @@ module.exports = {
     const chef = await Chef.find(req.params.id);
 
     if(!chef) return res.send('Chef not found!');
+
+    let file = await File.find(chef.file_id);
+
+    file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
     
-    return res.render('admin/chefs/edit', { chef });
+    return res.render('admin/chefs/edit', { chef, file });
   },
   async post(req, res) {
     const keys = Object.keys(req.body)
