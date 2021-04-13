@@ -307,7 +307,6 @@ button#delete {
 .recipe-image {
     width: 940px;
     height: 280px;
-    margin-bottom: 50px;
 }
 
 .recipe-image img {
@@ -315,6 +314,36 @@ button#delete {
     height: 100%;
     border-radius: 15px;
     object-fit: cover;
+}
+
+.recipe-preview {
+    text-align: right;
+    margin-top: 8px;
+
+    height: 50px;
+    width: 100%;
+}
+
+.recipe-preview img {
+    cursor: pointer;
+    border-radius: 4px;
+
+    width: 50px;
+    height: 50px;
+
+    object-fit: cover;
+    opacity: 0.6;
+
+    transition: 200ms;
+}
+
+.recipe-preview img + img {
+    margin-left: 5px;
+}
+
+.recipe-preview img:hover,
+.recipe-preview img.active {
+    opacity: 1;
 }
 
 .recipe-title {

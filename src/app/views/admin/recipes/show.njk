@@ -6,13 +6,29 @@
       <h2>Receita: {{recipe.title}}</h2>
       <a href="/admin/recipes/{{recipe.id}}/edit"><button>Editar Receita</button></a>
     </div>
+
     <div class="recipe-image">
       <img src="{{files[0].src}}">
     </div>
+
+     <div class="recipe-preview">
+      {% for image in files %}
+        <img 
+          src="{{image.src}}" 
+          alt="{{image.name}}"
+          {% if loop.index0 == 0 %}
+          class="active"
+          {% endif %}
+          onclick="ImageGallery.setImage(event)"
+        >
+      {% endfor %}
+    </div>
+
     <div class="recipe-title">
       <h2>{{recipe.title}}</h2>
       <p>{{recipe.chef_name}}</p>
     </div>
+
     <div class="recipe-content"> 
       <div class="recipe-section">
         <h2>Ingredientes</h2>
