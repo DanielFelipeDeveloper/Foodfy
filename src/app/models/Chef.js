@@ -50,13 +50,11 @@ module.exports = {
     const query = `
       UPDATE chefs SET
         name=($1),
-        updated_at=($2)
-      WHERE id = ($3)  
+      WHERE id = ($2)  
     `
 
     const values = [
       data.name,
-      date(Date.now()).iso,
       data.id
     ]
 

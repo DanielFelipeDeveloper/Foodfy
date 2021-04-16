@@ -8,11 +8,11 @@ module.exports = {
       SELECT recipes.*, chefs.name AS chef_name
       from recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
-      ORDER BY recipes.id`);
+      ORDER BY created_at DESC`);
       
     return results.rows;
   },
-  async create(data, callback) {
+  async create(data) {
     const query = `
       INSERT INTO recipes (
         title,
@@ -85,7 +85,7 @@ module.exports = {
       from recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
       WHERE recipes.title ILIKE '%${filter}%'
-      ORDER BY recipes.id`);
+      ORDER BY updated_at DESC`);
     return results.rows;
   },
   async findByChef(id) {
@@ -105,8 +105,7 @@ module.exports = {
         ingredients=($3),
         preparation=($4),
         information=($5),
-        updated_at=($6)
-      WHERE id = ($7)
+      WHERE id = ($6)
     `
 
     const values = [
@@ -115,7 +114,6 @@ module.exports = {
       data.ingredients,
       data.preparation,
       data.information,
-      date(Date.now()).iso,
       data.id
     ]
 

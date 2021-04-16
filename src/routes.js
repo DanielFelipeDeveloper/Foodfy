@@ -2,37 +2,37 @@ const express = require('express');
 const routes = express.Router();
 const multer = require('./app/middlewares/multer');
 
-const userController = require('./app/controllers/UserController');
-const recipeController = require('./app/controllers/RecipeController');
-const chefController = require('./app/controllers/ChefController');
+const HomeController = require('./app/controllers/HomeController');
+const RecipeController = require('./app/controllers/RecipeController');
+const ChefController = require('./app/controllers/ChefController');
 
 /* USER ROUTES */
-routes.get('/', userController.index);
-routes.get('/about', userController.about);
-routes.get('/recipes', userController.showAllRecipes);
-routes.get('/recipes/:index', userController.showTheRecipe);
-routes.get('/chefs', userController.chefs);
+routes.get('/', HomeController.index);
+routes.get('/about', HomeController.about);
+routes.get('/recipes', HomeController.showAllRecipes);
+routes.get('/recipes/:index', HomeController.showTheRecipe);
+routes.get('/chefs', HomeController.chefs);
 
 /* ADMIN ROUTES */
 
 /* RECIPES */
-routes.get('/admin/recipes', recipeController.index);
-routes.get('/admin/recipes/create', recipeController.create);
-routes.get('/admin/recipes/:id', recipeController.show);
-routes.get('/admin/recipes/:id/edit', recipeController.edit);
+routes.get('/admin/recipes', RecipeController.index);
+routes.get('/admin/recipes/create', RecipeController.create);
+routes.get('/admin/recipes/:id', RecipeController.show);
+routes.get('/admin/recipes/:id/edit', RecipeController.edit);
 
-routes.post('/admin/recipes', multer.array("photos", 5), recipeController.post);
-routes.put('/admin/recipes', multer.array("photos", 5), recipeController.put);
-routes.delete('/admin/recipes', recipeController.delete);
+routes.post('/admin/recipes', multer.array("photos", 5), RecipeController.post);
+routes.put('/admin/recipes', multer.array("photos", 5), RecipeController.put);
+routes.delete('/admin/recipes', RecipeController.delete);
 
 /* CHEFS */
-routes.get('/admin/chefs', chefController.index);
-routes.get('/admin/chefs/create', chefController.create);
-routes.get('/admin/chefs/:id', chefController.show);
-routes.get('/admin/chefs/:id/edit', chefController.edit);
+routes.get('/admin/chefs', ChefController.index);
+routes.get('/admin/chefs/create', ChefController.create);
+routes.get('/admin/chefs/:id', ChefController.show);
+routes.get('/admin/chefs/:id/edit', ChefController.edit);
 
-routes.post('/admin/chefs', multer.single("photo"), chefController.post);
-routes.put('/admin/chefs', multer.single("photo"), chefController.put);
-routes.delete('/admin/chefs', chefController.delete);
+routes.post('/admin/chefs', multer.single("photo"), ChefController.post);
+routes.put('/admin/chefs', multer.single("photo"), ChefController.put);
+routes.delete('/admin/chefs', ChefController.delete);
 
 module.exports = routes;
